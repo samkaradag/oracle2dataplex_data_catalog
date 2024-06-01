@@ -1,0 +1,6 @@
+google-cloud-datacatalog
+google-cloud-kms
+cx-Oracle
+pyyaml
+oracledb
+google-cloud-secret-manager==2.0.0

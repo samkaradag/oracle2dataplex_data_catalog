@@ -1,0 +1,11 @@
+databases:
+  - database_name: ORCL19
+    schemas:
+      - schema_name: MOCKSCHEMA
+        tables:
+          - table_name: COUNTRIES
+            bigquery_dataset: mockschema
+            bigquery_table: COUNTRIES
+          - table_name: DEPARTMENTS
+            bigquery_dataset: mockschema
+            bigquery_table: DEPARTMENTS
