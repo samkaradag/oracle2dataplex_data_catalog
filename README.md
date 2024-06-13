@@ -4,10 +4,11 @@
 This tool helps you automatically extract comments from your Oracle database and tag them as descriptions in Google Data Catalog for BigQuery tables. 
 
 ## Create Tag Templates and enable Services via Terraform
-terraform init
-gcloud auth application-default login
-terraform plan -var-file terraform.tfvars 
-terraform apply -var-file terraform.tfvars 
+```bash 
+    terraform init
+    gcloud auth application-default login
+    terraform plan -var-file terraform.tfvars 
+    terraform apply -var-file terraform.tfvars 
 
 
 # Oracle Database User
