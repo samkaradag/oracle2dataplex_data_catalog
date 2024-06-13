@@ -3,11 +3,11 @@ location: europe-west4
 tag_template_id: column_description_template
 datacatalog_endpoint: datacatalog.googleapis.com # (optional - internal endpoint datacatalog-erste..)
 database_connections:
-  - database: ORCL19
-    user: catalog_reader
-    password: "catalog_reader" # Or use password_kms_key for KMS
+  - database: your_database_name
+    user: your_oracle_username
+    password: "your_poassword" # Or use password_kms_key for KMS
     #Secret -> password_secret_id: "projects/sametsplayground/locations/europe-west4/keyRings/your-key-ring/cryptoKeys/your-crypto-key"
-    host: 34.141.235.166
+    host: your_oracle_host_or_ip
     port: 1521
-    service_name: ORCL19
+    service_name: Oracle_Service_Name
 table_mapping_file: table_mapping.yaml

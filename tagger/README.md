@@ -1,20 +1,46 @@
+
+# Oracle Comments to Google Data Catalog Connector
+
+This tool helps you automatically extract comments from your Oracle database and tag them as descriptions in Google Data Catalog for BigQuery tables. 
+
+## Create Tag Templates and enable Services via Terraform
 terraform init
 gcloud auth application-default login
 terraform plan -var-file terraform.tfvars 
 terraform apply -var-file terraform.tfvars 
 
-# oracle2dataplex_data_catalog
-This tool extracts Oracle Metadata such as Column Comments, gets a mapping table listing Oracle source tables to BigQuery tables, and populates Dataplex / Data Catalog with column aspects/tags
-
 
 # Oracle Database User
-needs 
+## Priviledges needed 
 GRANT SELECT ON DBA_COL_COMMENTS TO catalog_reader; 
-<!-- GRANT SELECT ON DBA_TAB_COLUMNS TO catalog_reader; 
-GRANT SELECT ON DBA_TAB_COLS TO catalog_reader; 
-GRANT SELECT ON DBA_TABLES TO catalog_reader;  -->
 this needs to be granted by sys user.
 
-SELECT owner, table_name, column_name, comments FROM dba_col_comments WHERE OWNER IN 'MOCKSCHEMA';
+Sample query:
+SELECT owner, table_name, column_name, comments FROM dba_col_comments;
 
+## Use service acccount or gcloud auth application-default login with your oauth credentials
 export GOOGLE_APPLICATION_CREDENTIALS=~/credentials/datacatalog-tag-template-processor-sa.json
+
+
+
+## Features
+
+* **Direct Oracle Connection:** Connects directly to your Oracle database to fetch column comments.
+* **Flexible Configuration:** Supports various ways to store and retrieve your Oracle credentials:
+    * Plaintext password in config file (for testing or local development)
+    * Google Secret Manager to securely store your password
+    * KMS to encrypt and decrypt your password 
+* **Table Mapping:**  Defines the mapping between Oracle schemas and tables to their corresponding BigQuery datasets and tables. 
+* **Data Catalog Tagging:** Creates tags in Google Data Catalog with the column comments as descriptions.
+* **Containerized:** Can be run in any Linux-based machine or containerized environment.
+
+## Prerequisites
+
+* **Google Cloud Project:**  A Google Cloud project with the Data Catalog and KMS APIs enabled.
+* **Google Cloud CLI:**  Installed and configured.
+* **Oracle Database:** An Oracle database accessible with appropriate permissions.
+* **Python 3.7 or higher:**  Installed on your machine. 
+* **Python Libraries:** Install the required Python libraries:
+   ```bash
+   pip install requirements.txt
+   python oracle-extractor-tagger.py 
