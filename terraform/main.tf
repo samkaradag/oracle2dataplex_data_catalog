@@ -26,6 +26,24 @@ resource "google_project_service" "data_catalog" {
   }
 }
 
+# Enable Dataplex API
+resource "google_project_service" "dataplex" {
+  service = "dataplex.googleapis.com"
+  disable_on_destroy = false
+  timeouts {
+    create = "30m"
+  }
+}
+
+# Enable Data Lineage API
+resource "google_project_service" "data_lineage" {
+  service = "datalineage.googleapis.com"
+  disable_on_destroy = false
+  timeouts {
+    create = "30m"
+  }
+}
+
 # Data Catalog Tag Template Resource
 resource "google_data_catalog_tag_template" "bigquery_column_descriptions" {
   # Use a resource dependency to ensure the Data Catalog API is enabled
